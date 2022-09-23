@@ -31,11 +31,11 @@ const FAQs = () => {
 
   return (
     <>
-        <div className='w-full flex justify-center border-t-8 border-slate-900 p-20'>
+        <div className='w-full flex justify-center border-t-8 border-slate-900 p-10 md:p-20'>
             <div className='w-full'>
-                <h1 className='text-center text-5xl font-bold'>Frequently Asked Questions</h1>
+                <h1 className='text-center text-3xl md:text-5xl font-bold'>Frequently Asked Questions</h1>
                 <div className='w-full py-10 flex justify-center'>
-                <div className='w-2/3'>
+                <div className='w-full lg:w-2/3'>
                 {
                     FAQData.map((currentObj, index)=> (
                        <div key={index} className=' bg-[#303030] mb-2 text-2xl'>
