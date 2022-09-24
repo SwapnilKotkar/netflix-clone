@@ -10,7 +10,7 @@ const profile = () => {
       <div>
         <Banner/>
       </div>
-      <div className='w-full py-10 px-5 bg-black'>
+      <div className='w-full pt-10 px-5 bg-black'>
         <MoviesCategory/>
       </div>
     </>
