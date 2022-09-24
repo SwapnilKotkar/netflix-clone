@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaGlobe } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { useLoginContext } from "../context/loginContext";
@@ -29,15 +30,19 @@ const Navbar = () => {
           navBG && "transition-colors duration-500 bg-black"
         }`}
       >
-        <div className="flex justify-between h-full items-center mx-[10px] md:mx-[50px] ">
-          <div className="logo ">
-            <img
-              src="assets/netflix-logo.png"
-              className="h-[4rem] md:h-[6rem] object-contain"
-              alt="netflix logo"
-            />
+        <div className="flex justify-between h-full items-center ">
+          <div className="logo cursor-pointer">
+            <Link href='/'>
+              <Image
+                src="/assets/netflix-logo.png"
+                className="h-[4rem] md:h-[6rem] object-contain"
+                alt="netflix logo"
+                height={100}
+                width={200}
+              />
+            </Link>
           </div>
-          <div className="space-x-8 flex">
+          <div className="space-x-8 flex mr-5">
             <button
               className="relative px-[12px] py-[3px] border flex items-center rounded-sm"
               onClick={() => setShow((prev) => !prev)}
