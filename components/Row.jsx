@@ -20,7 +20,7 @@ const Row = ({ title, fetchURL, isLargeRow, wait }) => {
 
   return (
     <>
-      <div className="mb-7">
+      <div>
         <h2 className="text-white text-xl md:text-2xl font-bold my-5">{title}</h2>
           <div className="w-full flex overflow-x-scroll overflow-y-hidden">
             {movies?.map((movie) => (
