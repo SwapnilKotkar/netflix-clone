@@ -27,13 +27,13 @@ const Banner = () => {
                 backgroundPosition: "center center"
             }
         }>
-            <div className='h-[35rem] flex items-end px-5 md:px-10 bg-black bg-opacity-50'>
+            <div className='h-[25rem] md:h-[35rem] flex items-end px-5 md:px-10 bg-black bg-opacity-50'>
             <div>
                 <h1 className='text-4xl md:text-6xl font-bold mb-3'>{movie?.title || movie?.name || movie?.original_name}</h1>
 
                 <div className='my-5 md:my-10 space-x-2'>
-                    <button className='bg-slate-900 bg-opacity-70 px-4 md:px-8 py-1 md:py-2'>Play</button>
-                    <button className='bg-slate-900 bg-opacity-70 px-4 md:px-8 py-1 md:py-2'>My List</button>
+                    <button className='bg-slate-900 bg-opacity-70 px-6 md:px-8 py-1 md:py-2'>Play</button>
+                    <button className='bg-slate-900 bg-opacity-70 px-6 md:px-8 py-1 md:py-2'>My List</button>
                 </div>
 
                 <h1 className='w-full md:w-2/3 mb-2 text-sm md:text-lg font-semibold'>{truncate(movie?.overview, 150)}</h1>
