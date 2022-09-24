@@ -25,8 +25,8 @@ const Row = ({ title, fetchURL, isLargeRow }) => {
               <img
                 className={`${isLargeRow ? 'h-[300px]' : 'h-[170px]'} p-2 first:pl-0 object-contain hover:scale-110 ease-in-out duration-300 cursor-pointer`}
                 key={movie.id}
-                src={`${imageBaseURL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
-                alt={movie.name}
+                src={`${imageBaseURL}${isLargeRow ? movie?.poster_path : movie?.backdrop_path}`}
+                alt={movie?.name}
               />
             ))}
           </div>
