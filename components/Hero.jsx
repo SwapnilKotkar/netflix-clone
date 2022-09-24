@@ -26,10 +26,10 @@ const Hero = () => {
             <h6 className="pt-8 pb-4 text-sm md:text-xl">
                 Ready to watch? Enter your email to create or restart your membership.
             </h6>
-            <div className="flex">
+            <div className="flex px-5 md:px-0">
                 <input type="email" name="email" id="email" className="w-[70%] bg-white px-2 py-2 md:py-4 text-black" placeholder="Email address" value={email} onChange={handleChange} />
                 <button className="bg-[#e50914] w-[30%] flex justify-center items-center">
-                    <span className="text-lg md:text-2xl">Get Started</span>
+                    <span className="text-sm md:text-2xl">Get Started</span>
                     <span className="text-2xl md:text-3xl"><RiArrowRightSLine/></span>
                 </button>
             </div>

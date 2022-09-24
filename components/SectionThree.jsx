@@ -3,7 +3,7 @@ import React from 'react'
 const SectionThree = () => {
   return (
     <>
-    <section className='flex justify-center border-t-8 border-slate-900'>
+    <section className='flex justify-center border-t-8 border-[#303030] bg-black'>
   <div className='md:py-10 flex flex-col md:flex-row justify-center w-[80%]' >
     <div className='h-full flex flex-1 justify-center items-center'>
       <div className='pt-10'>
