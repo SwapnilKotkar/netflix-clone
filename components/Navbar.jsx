@@ -31,7 +31,7 @@ const Navbar = () => {
         }`}
       >
         <div className="flex justify-between h-full items-center ">
-          <div className="logo cursor-pointer">
+          <div className="logo cursor-pointer w-[100px] md:w-[200px]">
             <Link href='/'>
               <Image
                 src="/assets/netflix-logo.png"
