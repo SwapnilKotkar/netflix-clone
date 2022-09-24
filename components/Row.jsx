@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import instance from "../requests/axios";
 import Image from "next/image";
 
-const Row = ({ title, fetchURL, isLargeRow }) => {
+const Row = ({ title, fetchURL, isLargeRow, wait }) => {
   const imageBaseURL = "https://image.tmdb.org/t/p/original/";
 
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,9 @@ const Row = ({ title, fetchURL, isLargeRow }) => {
       setMovies(data.data.results);
       return data;
     }
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, wait);
   }, [fetchURL]);
 
   return (
