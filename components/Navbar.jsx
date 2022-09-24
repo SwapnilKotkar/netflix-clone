@@ -1,27 +1,34 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { FaGlobe } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
+import { useLoginContext } from "../context/loginContext";
 
 const Navbar = () => {
-    const [show, setShow] = useState(false)
-    const [navBG, setnavBG] = useState(false)
+  const { loginStatus, handleLogout } = useLoginContext();
 
-    useEffect(() => {
-      window.addEventListener('scroll', () => {
-        if(window.scrollY > 100) {
-          setnavBG(true)
-        } else setnavBG(false)
+  const [show, setShow] = useState(false);
+  const [navBG, setnavBG] = useState(false);
 
-        return () => {
-          window.removeEventListener('scroll');
-        };
-      })
-    }, [])
-    
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setnavBG(true);
+      } else setnavBG(false);
+
+      return () => {
+        window.removeEventListener("scroll");
+      };
+    });
+  }, []);
 
   return (
     <>
-      <nav className={`fixed w-full h-[5rem] ${navBG && 'transition-colors duration-500 bg-black'}`}>
+      <nav
+        className={`fixed w-full h-[5rem] ${
+          navBG && "transition-colors duration-500 bg-black"
+        }`}
+      >
         <div className="flex justify-between h-full items-center mx-[10px] md:mx-[50px] ">
           <div className="logo ">
             <img
@@ -31,7 +38,10 @@ const Navbar = () => {
             />
           </div>
           <div className="space-x-8 flex">
-            <button className="relative px-[12px] py-[3px] border flex items-center rounded-sm" onClick={()=>setShow((prev) => !prev )}>
+            <button
+              className="relative px-[12px] py-[3px] border flex items-center rounded-sm"
+              onClick={() => setShow((prev) => !prev)}
+            >
               <span className="pr-1">
                 <FaGlobe />
               </span>
@@ -39,15 +49,34 @@ const Navbar = () => {
               <span className="pl-1">
                 <VscTriangleDown />
               </span>
-              <div className={`${!show && "hidden"} absolute top-[2rem] right-[0.01rem] w-[7rem] border text-left bg-black`}>
-                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">English</div>
-                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">Hindi</div>
-            </div>
+              <div
+                className={`${
+                  !show && "hidden"
+                } absolute top-[2rem] right-[0.01rem] w-[7rem] border text-left bg-black`}
+              >
+                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">
+                  English
+                </div>
+                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">
+                  Hindi
+                </div>
+              </div>
             </button>
-            
-            <button className="px-[14px] py-[3px] border border-[#e50914] bg-[#e50914] rounded-sm">
-              Sign in
-            </button>
+
+            {loginStatus && (
+              <Link href="/signin">
+                <button className="px-[14px] py-[3px] border border-[#e50914] bg-[#e50914] rounded-sm" onClick={handleLogout}>
+                  Log out
+                </button>
+              </Link>
+            )}
+            {!loginStatus && (
+              <Link href="/signin">
+                <button className="px-[14px] py-[3px] border border-[#e50914] bg-[#e50914] rounded-sm">
+                  Sign in
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </nav>

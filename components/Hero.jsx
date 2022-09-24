@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <>
       <Navbar />
-      <section className='hero_section bg-[url("/assets/bg-hero.jpg")] h-full'>
+      <section className='bg-[url("/assets/bg-hero.jpg")] h-full'>
         <div className="bg-black bg-opacity-60">
           <div className="h-20 bg-gradient-to-b from-black to-black-500" />
           <div className="my-40 flex justify-center text-center">
