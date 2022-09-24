@@ -24,9 +24,7 @@ const Row = ({ title, fetchURL, isLargeRow, wait }) => {
     else {
       try {
         const movieURL = await movieTrailer(movie.name);
-        console.log('movieURL', movieURL)
         const urlParams = new URLSearchParams(new URL(movieURL).search);
-        console.log('urlParams', urlParams)
         setTrailerUrl(urlParams.get("v"))
       } 
       catch (error) {
