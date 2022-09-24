@@ -31,7 +31,7 @@ const Navbar = () => {
         }`}
       >
         <div className="flex justify-between h-full items-center ">
-          <div className="logo cursor-pointer w-[100px] md:w-[200px]">
+          <div className="logo cursor-pointer w-[110px] md:w-[200px]">
             <Link href='/'>
               <Image
                 src="/assets/netflix-logo.png"
@@ -42,16 +42,16 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <div className="space-x-8 flex mr-5">
+          <div className="space-x-2 flex mr-5">
             <button
               className="relative px-[12px] py-[3px] border flex items-center rounded-sm"
               onClick={() => setShow((prev) => !prev)}
             >
-              <span className="pr-1">
+              <span className="pr-1 text-[0.7rem]">
                 <FaGlobe />
               </span>
-              <span className="text-[0.9rem]">English</span>
-              <span className="pl-1">
+              <span className="text-[0.7rem] md:text-[0.9rem]">English</span>
+              <span className="pl-1 text-[0.7rem]">
                 <VscTriangleDown />
               </span>
               <div
@@ -59,7 +59,7 @@ const Navbar = () => {
                   !show && "hidden"
                 } absolute top-[2rem] right-[0.01rem] w-[7rem] border text-left bg-black`}
               >
-                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">
+                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer md:text-[1rem]">
                   English
                 </div>
                 <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">
@@ -70,14 +70,14 @@ const Navbar = () => {
 
             {loginStatus && (
               <Link href="/signin">
-                <button className="px-[14px] py-[3px] border border-[#e50914] bg-[#e50914] rounded-sm" onClick={handleLogout}>
+                <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm" onClick={handleLogout}>
                   Log out
                 </button>
               </Link>
             )}
             {!loginStatus && (
               <Link href="/signin">
-                <button className="px-[14px] py-[3px] border border-[#e50914] bg-[#e50914] rounded-sm">
+                <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm">
                   Sign in
                 </button>
               </Link>
