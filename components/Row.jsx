@@ -1,11 +1,39 @@
 import React, { useState, useEffect } from "react";
 import instance from "../requests/axios";
-import Image from "next/image";
+import YouTube from 'react-youtube';
+import movieTrailer from 'movie-trailer'
 
 const Row = ({ title, fetchURL, isLargeRow, wait }) => {
   const imageBaseURL = "https://image.tmdb.org/t/p/original/";
 
   const [movies, setMovies] = useState([]);
+  const [trailerUrl, setTrailerUrl] = useState("")
+
+  const opts = {
+    height : "390",
+    width : "100%",
+    playerVars : {
+      autoplay : 1,
+    }
+  }
+
+  const handleClick = async (movie) => {
+    if(trailerUrl) {
+      setTrailerUrl('');
+    } 
+    else {
+      try {
+        const movieURL = await movieTrailer(movie.name);
+        console.log('movieURL', movieURL)
+        const urlParams = new URLSearchParams(new URL(movieURL).search);
+        console.log('urlParams', urlParams)
+        setTrailerUrl(urlParams.get("v"))
+      } 
+      catch (error) {
+        console.log(error)
+      }
+  }
+}
 
   useEffect(() => {
     async function fetchData() {
@@ -16,7 +44,7 @@ const Row = ({ title, fetchURL, isLargeRow, wait }) => {
     setTimeout(() => {
       fetchData();
     }, wait);
-  }, [fetchURL]);
+  }, [fetchURL, wait]);
 
   return (
     <>
@@ -27,16 +55,16 @@ const Row = ({ title, fetchURL, isLargeRow, wait }) => {
               <img
                 className={`${isLargeRow ? 'h-[200px] md:h-[300px]' : 'h-[120px] md:h-[170px]'} p-2 first:pl-0 object-contain hover:scale-110 ease-in-out duration-300 cursor-pointer`}
                 key={movie.id}
+                onClick={() => handleClick(movie)}
                 src={`${imageBaseURL}${isLargeRow ? movie?.poster_path : movie?.backdrop_path}`}
                 alt={movie?.name}
               />
             ))}
           </div>
+          {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
       </div>
     </>
   );
 };
 
 export default Row;
-
-// p-2 first:pl-0 h-[300px] object-contain hover:scale-110 ease-in-out duration-300 cursor-pointer
