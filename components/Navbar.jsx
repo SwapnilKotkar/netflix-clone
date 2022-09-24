@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaGlobe } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
-import { useLoginContext } from "../context/loginContext";
+import { useLoginContext } from "../context/LoginContext";
 
 const Navbar = () => {
   const { loginStatus, handleLogout } = useLoginContext();
