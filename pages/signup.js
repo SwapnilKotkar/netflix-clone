@@ -29,9 +29,9 @@ const Signup = () => {
         try {
             await signUp(email, password)
             toast.remove();
-            toast.success('login success')
+            toast.success('Account Created')
             setTimeout(() => {
-                router.push('/userhome')
+                router.push('/signin')
             }, 500);
         } 
         catch (error) {
