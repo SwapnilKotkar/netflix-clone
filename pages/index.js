@@ -1,7 +1,3 @@
-import Head from "next/head";
-import Image from "next/image";
-import Navbar from "../components/Navbar";  
-import Link from "next/link";
 import Hero from "../components/Hero";
 import SectionOne from "../components/SectionOne";
 import SectionTwo from "../components/SectionTwo";
@@ -10,7 +6,19 @@ import SectionFour from "../components/SectionFour";
 import FAQs from "../components/FAQs";
 import Footer from "../components/Footer";
 
+import { useEffect } from "react";
+import { useLoginContext } from "../context/LoginContext";
+import { useRouter } from 'next/router';
+
 export default function Home() {
+  const router = useRouter();
+  const { user, logOut } = useLoginContext();
+
+  useEffect(() => {
+    if(user){
+      router.push('/userhome')
+    }
+  }, [user, router])
   return (
     <>
       <Hero/>

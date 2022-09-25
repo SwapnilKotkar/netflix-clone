@@ -59,7 +59,7 @@ useEffect(() => {
 
   return (
     <>
-      <div>
+      <div className="z-10">
         <h2 className="text-white text-xl md:text-2xl font-bold my-5">{title}</h2>
           <div className="relative flex items-center group">
           <MdChevronLeft className="rounded-full text-black bg-white absolute top-[40%] left-0 opacity-60 hover:opacity-100 z-10 cursor-pointer hidden group-hover:block" size={40} onClick={slideLeft}/>

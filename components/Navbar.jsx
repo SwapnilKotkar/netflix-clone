@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { FaGlobe } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import { useLoginContext } from "../context/LoginContext";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { loginStatus, handleLogout } = useLoginContext();
-
-  const [show, setShow] = useState(false);
+  const router = useRouter();
+  const { user, logOut } = useLoginContext();
   const [navBG, setnavBG] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      toast.remove();
+      toast.success("logout success");
+      setTimeout(() => {
+        router.push("/");
+      }, 500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -27,12 +41,12 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed w-full h-[5rem] ${
-          navBG && "transition-colors duration-500 bg-black"
+          navBG && "transition-colors duration-500 bg-black z-50"
         }`}
       >
         <div className="flex justify-between h-full items-center ">
           <div className="logo cursor-pointer w-[110px] md:w-[200px]">
-            <Link href='/'>
+            <Link href="/">
               <Image
                 src="/assets/netflix-logo.png"
                 className="h-[4rem] md:h-[6rem] object-contain"
@@ -43,44 +57,33 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="space-x-2 flex mr-5">
-            <button
-              className="relative px-[12px] py-[3px] border flex items-center rounded-sm"
-              onClick={() => setShow((prev) => !prev)}
-            >
-              <span className="pr-1 text-[0.7rem]">
-                <FaGlobe />
-              </span>
-              <span className="text-[0.7rem] md:text-[0.9rem]">English</span>
-              <span className="pl-1 text-[0.7rem]">
-                <VscTriangleDown />
-              </span>
-              <div
-                className={`${
-                  !show && "hidden"
-                } absolute top-[2rem] right-[0.01rem] w-[7rem] border text-left bg-black`}
-              >
-                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer md:text-[1rem]">
-                  English
-                </div>
-                <div className="hover:bg-slate-700 p-1 px-2 cursor-pointer text-[1rem]">
-                  Hindi
-                </div>
-              </div>
-            </button>
-
-            {loginStatus && (
-              <Link href="/signin">
-                <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm" onClick={handleLogout}>
+            {user ? (
+              <>
+                <Link href="/myaccount">
+                  <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] hover:underline underline-offset-4">
+                    My account
+                  </button>
+                </Link>
+                <button
+                  className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm"
+                  onClick={handleLogout}
+                >
                   Log out
                 </button>
-              </Link>
-            )}
-            {!loginStatus && (
-              <Link href="/signin">
-                <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm">
-                  Sign in
-                </button>
-              </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/signup">
+                  <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] hover:underline underline-offset-4">
+                    Sign Up
+                  </button>
+                </Link>
+                <Link href="/signin">
+                  <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] border border-[#e50914] bg-[#e50914] rounded-sm">
+                    Sign in
+                  </button>
+                </Link>
+              </>
             )}
           </div>
         </div>

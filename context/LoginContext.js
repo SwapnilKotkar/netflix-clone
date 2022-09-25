@@ -1,28 +1,38 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { auth } from '../firebase/firebase';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'firebase/auth'
 
 const Context = createContext();
 
 export const LoginContext = ({ children }) => {
-  const router = useRouter();
-  const [loginStatus, setLoginStatus] = useState(false);
-  const [tokenValue, setTokenValue] = useState();
+  const [user, setUser] = useState({})
+
+  const signUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+  
+  const logIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const logOut = () => {
+    return signOut(auth)
+  }
 
   useEffect(() => {
-    const tokenData = localStorage.getItem("netflix_login_token");
-    if (tokenData) {
-      setLoginStatus(true);
-      setTokenValue(tokenData);
+    const loginStatus = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    })
+  
+    return () => {
+      loginStatus();
     }
-  }, [router.query]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("signin_token");
-    setLoginStatus(false);
-  };
+  }, [])
+  
 
   return (
-    <Context.Provider value={{ loginStatus, tokenValue, handleLogout }}>
+    <Context.Provider value={{ signUp, logIn, logOut, user }}>
       {children}
     </Context.Provider>
   );

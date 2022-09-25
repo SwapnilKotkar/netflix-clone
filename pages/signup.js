@@ -1,60 +1,60 @@
 import React, {useState} from 'react'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsArrowLeft } from "react-icons/bs";
 import { useLoginContext } from "../context/LoginContext";
 import toast from "react-hot-toast";
-import { useRouter } from 'next/router';
 
-const Signin = () => {
+const Signup = () => {
     const router = useRouter();
-    const { logIn } = useLoginContext();
+    const { signUp, user } = useLoginContext();
 
     const [login, setLogin] = useState({
         email:"",
         password: ""
     })
 
+
     const handleChange = (event) =>{
         const {name, value} = event.target;
         setLogin({...login, [name]: value});
       }
 
-    const handleSubmit = async (e) =>{
-    e.preventDefault();
-    toast.loading('redirecting...')
+      const handleSubmit = async (e) =>{
+        e.preventDefault();
+        toast.loading('redirecting...')
 
-    const {email, password} = login;
-    
-    try {
-        await logIn(email, password)
-        toast.remove()
-        toast.success('login success')
-        setTimeout(() => {
-            router.push('/userhome')
-        }, 500);
-    } 
-    catch (error) {
-        toast.remove()
-        toast.error('login failed')
-        console.log(error)
-    }
+        const {email, password} = login;
 
-    setLogin({
-        email:"", 
-        password:""
-    })
-    }
+        try {
+            await signUp(email, password)
+            toast.remove();
+            toast.success('login success')
+            setTimeout(() => {
+                router.push('/userhome')
+            }, 500);
+        } 
+        catch (error) {
+            toast.remove()
+            toast.error('sign up failed')
+            console.log(error)
+        }
 
+        setLogin({
+            email:"", 
+            password:""
+        })
+      }
   return (
     <>
         <div className='bg-[url("/assets/bg-hero.jpg")] h-[100vh] flex justify-center'>
             <div className='h-full w-full bg-black bg-opacity-60'>
             <div className='w-full p-20 flex justify-center'>
-                <div className='relative md:w-2/3 lg:w-2/4 xl:w-1/3 xxl:1/4  py-[60px] px-[50px] rounded bg-black bg-opacity-80'>
+                <div className='relative md:w-2/3 lg:w-2/4 xl:w-1/3 xxl:1/4 py-[60px] px-[50px] rounded bg-black bg-opacity-80'>
                 <Link href='/'>
                     <div className='absolute top-5 left-6'><BsArrowLeft className='text-2xl cursor-pointer'/></div>
                 </Link>
-                    <h1 className='mb-4 text-2xl md:text-3xl font-bold'>Sign In</h1>
+                    <h1 className='mb-4 text-2xl md:text-3xl font-bold'>Sign Up</h1>
                     <div>
                         <form onSubmit={handleSubmit}>
                             <div className='flex flex-col my-2'>
@@ -67,7 +67,7 @@ const Signin = () => {
                             </div>
                             <div className='mt-8'>
                                 <button type='submit' className='w-full py-3 rounded font-bold bg-[#e50914]'>
-                                    Sign In
+                                    Sign Up
                                 </button>
                             </div>
                         </form>
@@ -80,8 +80,8 @@ const Signin = () => {
                     </div>
                     <div className='py-20'>
                         <div>
-                            <span className='font-semibold text-[#777777]'>New to Netflix? </span>
-                            <Link href='/signup'><span className='text-base cursor-pointer hover:underline'>Sign Up Now.</span></Link>
+                            <span className='font-semibold text-[#777777]'>Already a Netflix user? </span>
+                            <Link href='/signin'><span className='text-base cursor-pointer hover:underline'>Sign in Now.</span></Link>
                         </div>
                         <p className='py-1 text-sm font-semibold text-[#777777]'>This page is protected by Google reCAPTCHA to ensure you are not a bot. <span className='text-blue-500 hover:underline cursor-pointer'>Learn more.</span></p>
                     </div>
@@ -94,4 +94,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default Signup
