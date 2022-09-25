@@ -49,8 +49,8 @@ const Signup = () => {
     <>
         <div className='bg-[url("/assets/bg-hero.jpg")] h-[100vh] flex justify-center'>
             <div className='h-full w-full bg-black bg-opacity-60'>
-            <div className='w-full p-20 flex justify-center'>
-                <div className='relative md:w-2/3 lg:w-2/4 xl:w-1/3 xxl:1/4 py-[60px] px-[50px] rounded bg-black bg-opacity-80'>
+            <div className='py-20 px-5 flex justify-center'>
+                <div className='relative w-full sm:w-[400px] md:w-[500px] py-[60px] px-[50px] rounded bg-black bg-opacity-80'>
                 <Link href='/'>
                     <div className='absolute top-5 left-6'><BsArrowLeft className='text-2xl cursor-pointer'/></div>
                 </Link>
