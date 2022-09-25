@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FaGlobe } from "react-icons/fa";
-import { VscTriangleDown } from "react-icons/vsc";
 import { useLoginContext } from "../context/LoginContext";
 import toast from "react-hot-toast";
 
@@ -56,12 +54,17 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <div className="space-x-2 flex mr-5">
+          <div className="space-x-3 flex mr-5">
             {user ? (
               <>
+              <Link href="/userhome">
+                  <button className="py-[3px] text-[0.8rem] md:text-[1rem] hover:underline underline-offset-4">
+                    Home
+                  </button>
+                </Link>
                 <Link href="/myaccount">
-                  <button className="px-[14px] py-[3px] text-[0.8rem] md:text-[1rem] hover:underline underline-offset-4">
-                    My account
+                  <button className="py-[3px] text-[0.8rem] md:text-[1rem] hover:underline underline-offset-4">
+                    My Watchlist
                   </button>
                 </Link>
                 <button

@@ -5,7 +5,7 @@ import requests from '../requests/requests'
 const MoviesCategory = () => {
   return (
     <>
-        <Row RowID='1' title="NETFLIX ORIGINALS" fetchURL={requests.fetchNetflixOriginals} isLargeRow/>
+        <Row RowID='1' title="NETFLIX ORIGINALS" fetchURL={requests.fetchNetflixOriginals} isLargeRow="true"/>
         <Row RowID='2' title="Trending Now" fetchURL={requests.fetchTrending} wait={1000}/>
         <Row RowID='3' title="Top Rated" fetchURL={requests.fetchTopRated} wait={1300}/>
         <Row RowID='4' title="Action Movies" fetchURL={requests.fetchActionMovies} wait={1600}/>
