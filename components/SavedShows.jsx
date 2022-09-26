@@ -43,7 +43,7 @@ const SavedShows = () => {
 
   return (
     <>
-      <div className="p-4">
+      <div className="bg-black p-4">
         <h2 className="text-white text-xl md:text-2xl font-bold my-5">
           My Shows
         </h2>
