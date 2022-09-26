@@ -6,6 +6,7 @@ const myaccount = () => {
   return (
     <>
       <Navbar />
+      <div className="bg-black h-[100vh]">
       <div>
         <div className="w-full h-full bg-[url('/assets/bg-hero.jpg')] text-white">
           <div className=" bg-black/60 w-full h-[400px]">
@@ -16,6 +17,7 @@ const myaccount = () => {
         </div>
       </div>
       <SavedShows />
+      </div>
     </>
   );
 };
